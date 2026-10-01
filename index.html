@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>W.A.R. Flooring | Flooring & Remodeling — South Florida</title>
+<meta name="description" content="W.A.R. Flooring — residential & commercial flooring and remodeling. LVP, LVT, laminate, tile, kitchens & bathrooms. Free estimates. We go to war with the floors.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23C59A3F' d='M2.5 16.8 5.5 7.2l4.2 4.6L12 4.8l2.3 7 4.2-4.6 3 9.6z'/%3E%3Crect x='2.5' y='18.4' width='19' height='2.2' rx='1.1' fill='%23C59A3F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   W.A.R. FLOORING — design system
+   ============================================================ */
+:root{
+  --bg:#0F0F11;
+  --bg2:#1A1A1E;
+  --bg3:#141417;
+  --gold:#C59A3F;
+  --gold-hi:#D9B35F;
+  --silver:#E0E0E0;
+  --white:#F4F4F5;
+  --dim:#A6A6AF;
+  --dim2:#8E8E97;
+  --muted:#3F3F46;
+  --line:rgba(63,63,70,.55);
+  --ink:#171106; /* text on gold */
+  --noise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  --ease:cubic-bezier(.2,.7,.25,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+html,body{overflow-x:clip}
+body{
+  font-family:'Manrope',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--white);
+  font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+/* film grain over everything — very subtle */
+body::after{content:"";position:fixed;inset:0;background-image:var(--noise);opacity:.04;pointer-events:none;z-index:999}
+::selection{background:var(--gold);color:var(--ink)}
+::-webkit-scrollbar{width:10px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--muted);border-radius:6px}
+::-webkit-scrollbar-thumb:hover{background:#565660}
+
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+.container{max-width:1220px;margin-inline:auto;padding-inline:clamp(20px,4vw,40px)}
+.section{padding-block:clamp(72px,9vw,116px)}
+.section--alt{background:var(--bg2)}
+
+.ic{fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;width:18px;height:18px;flex:none}
+
+/* ---------- typography helpers ---------- */
+.eyebrow{
+  display:flex;align-items:center;gap:12px;
+  color:var(--gold);font-size:.72rem;font-weight:800;
+  letter-spacing:.22em;text-transform:uppercase;
+}
+.eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.shead{max-width:660px;margin-bottom:clamp(36px,5vw,56px)}
+.shead h2{font-size:clamp(1.85rem,3.4vw,2.7rem);font-weight:800;letter-spacing:-.015em;line-height:1.12;margin-top:16px}
+.shead p{color:var(--dim);margin-top:14px;font-size:1.02rem}
+.shead--center{margin-inline:auto;text-align:center}
+.shead--center .eyebrow{justify-content:center}
+.shead--center .eyebrow::before{display:none}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  padding:16px 26px;font-size:.78rem;font-weight:800;
+  letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid transparent;border-radius:2px;
+  transition:transform .25s var(--ease),background .25s,border-color .25s,color .25s,box-shadow .25s;
+  white-space:nowrap;
+}
+.btn--gold{background:var(--gold);color:var(--ink)}
+.btn--gold:hover{background:var(--gold-hi);transform:translateY(-2px);box-shadow:0 10px 28px rgba(197,154,63,.22)}
+.btn--ghost{border-color:var(--muted);color:var(--white)}
+.btn--ghost:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.btn--lg{padding:19px 34px;font-size:.84rem}
+
+.link-arrow{
+  display:inline-flex;align-items:center;gap:8px;
+  color:var(--gold);font-weight:800;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;
+}
+.link-arrow .ic{width:16px;height:16px;transition:transform .25s var(--ease)}
+.link-arrow:hover .ic{transform:translateX(5px)}
+
+/* ============================================================
+   TEXTURES — CSS-generated flooring materials
+   (each one is a placeholder: swap with a real <img> later — search "SWAP")
+   ============================================================ */
+.media{position:relative;overflow:hidden;background:#101013}
+.media .layer{position:absolute;inset:0;z-index:1}
+.media .tag{
+  position:absolute;top:12px;left:12px;z-index:4;
+  font-size:.62rem;font-weight:800;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--silver);background:rgba(15,15,17,.55);border:1px solid var(--line);
+  padding:5px 9px;backdrop-filter:blur(3px);
+}
+.media .cap{
+  position:absolute;right:14px;bottom:11px;z-index:4;
+  font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(244,244,245,.62);
+}
+.media .sheen{
+  position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:linear-gradient(105deg,transparent 42%,rgba(255,242,214,.10) 50%,transparent 58%);
+  transform:translateX(-30%);animation:sheen 9s ease-in-out infinite alternate;
+}
+@keyframes sheen{to{transform:translateX(30%)}}
+.fx-noise::before{content:"";position:absolute;inset:0;z-index:2;background-image:var(--noise);opacity:.14;pointer-events:none}
+.fx-noise--heavy::before{opacity:.34}
+
+/* wood plank — structure shared, tones per variant */
+.tex-plank{
+  background-color:var(--wood,#8b6944);
+  background-image:var(--wash,none),
+    repeating-linear-gradient(0deg,rgba(15,8,3,.38) 0 2px,transparent 2px 84px),
+    repeating-linear-gradient(90deg,rgba(15,8,3,.20) 0 2px,transparent 2px 208px),
+    repeating-linear-gradient(91.5deg,rgba(255,243,214,.05) 0 2px,transparent 2px 21px),
+    repeating-linear-gradient(88.5deg,rgba(20,10,4,.08) 0 1px,transparent 1px 12px);
+}
+.tex-plank--oak{--wood:#8b6944;--wash:linear-gradient(100deg,rgba(0,0,0,.20),rgba(255,238,205,.12) 45%,rgba(0,0,0,.16))}
+.tex-plank--walnut{--wood:#5f422a;--wash:linear-gradient(100deg,rgba(0,0,0,.26),rgba(255,224,175,.10) 45%,rgba(0,0,0,.20))}
+.tex-plank--ash{--wood:#c0a988;--wash:linear-gradient(100deg,rgba(0,0,0,.14),rgba(255,248,228,.20) 45%,rgba(0,0,0,.10))}
+.tex-plank--honey{--wood:#a97f4f;--wash:linear-gradient(100deg,rgba(0,0,0,.18),rgba(255,240,205,.14) 45%,rgba(0,0,0,.14))}
+.tex-plank--gray{--wood:#7d7a76;--wash:linear-gradient(100deg,rgba(0,0,0,.20),rgba(255,255,255,.10) 45%,rgba(0,0,0,.14))}
+
+/* tile */
+.tex-tile{
+  background-color:var(--tile,#cdc8bd);
+  background-image:
+    radial-gradient(130% 100% at 30% 10%,rgba(255,255,255,.20),transparent 55%),
+    linear-gradient(180deg,rgba(255,255,255,.05),rgba(0,0,0,.08)),
+    repeating-linear-gradient(0deg,rgba(50,45,40,.30) 0 2px,transparent 2px 92px),
+    repeating-linear-gradient(90deg,rgba(50,45,40,.30) 0 2px,transparent 2px 92px);
+}
+.tex-tile--light{--tile:#d8d3c8}
+.tex-tile--gray{--tile:#a8a6a0}
+.tex-checker{background-color:#e6e1d7;background-image:conic-gradient(#2b2e33 25%,transparent 0 50%,#2b2e33 0 75%,transparent 0);background-size:88px 88px}
+
+/* chevron parquet */
+.tex-chev{
+  background-color:#8a6743;
+  background-image:
+    linear-gradient(135deg,rgba(40,22,8,.42) 25%,transparent 25%) -32px 0,
+    linear-gradient(225deg,rgba(40,22,8,.42) 25%,transparent 25%) -32px 0,
+    linear-gradient(315deg,rgba(255,232,190,.12) 25%,transparent 25%),
+    linear-gradient(45deg,rgba(255,232,190,.12) 25%,transparent 25%);
+  background-size:64px 64px;
+}
+
+/* old carpet */
+.tex-carpet{
+  background-color:#b0a58c;
+  background-image:
+    radial-gradient(120% 90% at 25% 0%,rgba(255,255,255,.12),transparent 60%),
+    repeating-conic-gradient(rgba(0,0,0,.05) 0% 25%,transparent 0% 50%);
+  background-size:auto,6px 6px;
+}
+
+/* stylized interior "elevation" — wall + baseboard + floor */
+.room{position:absolute;inset:0;overflow:hidden;background:#101013}
+.room i{position:absolute;z-index:1;display:block}
+.room__wall{left:0;right:0;top:0;height:46%;background:var(--wall,#E7DFD2)}
+.room__base{left:0;right:0;top:calc(46% - 7px);height:7px;background:linear-gradient(#f6f4ee,#b9b4a9)}
+.room__floor{left:0;right:0;top:46%;bottom:0}
+.room::before{content:"";position:absolute;inset:0;z-index:2;background-image:var(--noise);opacity:.16;pointer-events:none}
+.room::after{
+  content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+  background:
+    radial-gradient(90% 60% at 28% -10%,rgba(255,244,214,.18),transparent 55%),
+    linear-gradient(180deg,rgba(15,15,17,.08) 55%,rgba(15,15,17,.42));
+}
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .35s,border-color .35s,box-shadow .35s;
+  border-bottom:1px solid transparent;
+}
+.nav__inner{display:flex;align-items:center;gap:32px;height:78px}
+.nav.scrolled{background:rgba(15,15,17,.92);backdrop-filter:blur(12px);border-bottom-color:var(--line)}
+body.menu-open .nav{background:rgba(15,15,17,.98);border-bottom-color:transparent}
+
+.logo{display:flex;align-items:center;gap:11px;margin-right:auto}
+.logo__crown{width:27px;height:27px;flex:none}
+.logo__type b{
+  display:block;font-size:1.06rem;font-weight:800;letter-spacing:.06em;line-height:1;
+  background:linear-gradient(180deg,#f5f5f6 0%,#c8c8cc 45%,#8f8f96 55%,#e6e6e9 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.logo__type i{display:block;font-style:normal;font-size:.55rem;font-weight:800;letter-spacing:.46em;color:var(--gold);margin-top:3px}
+
+.nav__links{display:flex;gap:30px}
+.nav__links a{
+  position:relative;font-size:.72rem;font-weight:700;letter-spacing:.14em;
+  color:var(--dim);text-transform:uppercase;padding:6px 0;transition:color .25s;
+}
+.nav__links a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .3s var(--ease)}
+.nav__links a:hover{color:var(--white)}
+.nav__links a:hover::after{width:100%}
+.nav .btn{padding:12px 20px;font-size:.7rem}
+.nav__burger{display:none;width:44px;height:44px;align-items:center;justify-content:center;flex-direction:column;gap:6px}
+.nav__burger span{display:block;width:22px;height:2px;background:var(--white);transition:transform .35s var(--ease)}
+body.menu-open .nav__burger span:first-child{transform:translateY(4px) rotate(45deg)}
+body.menu-open .nav__burger span:last-child{transform:translateY(-4px) rotate(-45deg)}
+
+/* mobile menu */
+.mnav{
+  position:fixed;inset:0;z-index:90;background:rgba(15,15,17,.98);
+  padding:118px 28px 40px;transform:translateX(103%);visibility:hidden;
+  transition:transform .5s var(--ease),visibility .5s;
+  display:flex;flex-direction:column;overflow-y:auto;
+}
+body.menu-open .mnav{transform:none;visibility:visible}
+body.menu-open{overflow:hidden}
+.mnav nav a{
+  display:block;padding:16px 2px;border-bottom:1px solid var(--line);
+  font-size:1.35rem;font-weight:800;letter-spacing:.02em;
+}
+.mnav nav a:hover{color:var(--gold)}
+.mnav__cta{margin-top:auto;padding-top:34px;display:grid;gap:14px}
+.mnav__cta .btn{width:100%}
+.mnav__row{display:flex;align-items:center;gap:12px;color:var(--dim);font-weight:700}
+.mnav__row .ic{color:var(--gold)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;padding-top:118px;padding-bottom:64px}
+.hero::before{ /* faint plank ghost behind everything */
+  content:"";position:absolute;inset:0;opacity:.05;pointer-events:none;
+  background:repeating-linear-gradient(0deg,rgba(255,235,200,.5) 0 1px,transparent 1px 84px);
+}
+.hero .container{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,64px);align-items:center;position:relative}
+
+.hero__title{
+  font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:800;line-height:1.03;
+  letter-spacing:-.015em;text-transform:uppercase;margin-top:22px;
+}
+.war{color:var(--gold);position:relative;display:inline-block;padding-bottom:8px}
+.war__stroke{position:absolute;left:-2%;bottom:-4px;width:104%;height:10px;color:var(--gold);opacity:.9}
+.war__stroke path{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .7s .6s var(--ease) forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero__title .l2{
+  background:linear-gradient(180deg,#F4F4F5 15%,#B9B9C2 95%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero__title .dot{color:var(--gold)}
+.hero__sub{color:var(--dim);font-size:1.06rem;max-width:520px;margin-top:24px}
+.hero__actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero__micro{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:30px}
+.hero__micro li{display:flex;align-items:center;gap:9px;font-size:.8rem;font-weight:700;color:var(--silver)}
+.hero__micro .ic{width:15px;height:15px;color:var(--gold);stroke-width:2.6}
+
+.hero__frame{position:relative}
+.hero__media{aspect-ratio:4/4.35;border:1px solid var(--line)}
+.hero__card{
+  position:absolute;left:-30px;bottom:30px;z-index:5;max-width:305px;
+  background:rgba(20,20,23,.94);border:1px solid var(--line);border-left:3px solid var(--gold);
+  padding:17px 20px;backdrop-filter:blur(6px);
+}
+.hero__card-kicker{display:block;font-size:.62rem;font-weight:800;letter-spacing:.22em;color:var(--gold);text-transform:uppercase}
+.hero__card strong{display:block;font-size:1.02rem;font-weight:800;letter-spacing:.01em;margin-top:7px}
+.hero__card em{display:block;font-style:italic;color:var(--dim);font-size:.86rem;margin-top:6px}
+
+/* ============================================================
+   TRUST STRIP
+   ============================================================ */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg2)}
+.trust ul{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 0;padding-block:19px}
+.trust li{
+  display:flex;align-items:center;gap:18px;padding-inline:18px;
+  font-size:.7rem;font-weight:800;letter-spacing:.18em;color:var(--silver);text-transform:uppercase;
+}
+.trust li::after{content:"";width:5px;height:5px;background:var(--gold);transform:rotate(45deg);opacity:.85}
+.trust li:last-child::after{display:none}
+
+/* ============================================================
+   SERVICES — interactive selector
+   ============================================================ */
+.sv{display:grid;grid-template-columns:340px 1fr;gap:42px;align-items:start}
+.sv-group{font-size:.66rem;font-weight:800;letter-spacing:.24em;color:var(--dim2);text-transform:uppercase;margin:22px 0 8px}
+.sv-group:first-child{margin-top:0}
+.stab{
+  display:flex;align-items:center;gap:14px;width:100%;text-align:left;
+  padding:13px 16px;border-left:2px solid transparent;color:#B9B9C2;
+  transition:background .25s,color .25s,border-color .25s;
+}
+.stab:hover{color:var(--white);background:rgba(26,26,30,.6)}
+.stab.is-active{color:var(--white);background:var(--bg2);border-left-color:var(--gold)}
+.stab__num{font-size:.66rem;font-weight:800;color:var(--gold);letter-spacing:.05em}
+.stab__name{flex:1;font-weight:700;font-size:.92rem;letter-spacing:.02em}
+.stab__arr{width:16px;height:16px;opacity:0;transform:translateX(-5px);transition:.25s var(--ease);color:var(--gold)}
+.stab.is-active .stab__arr{opacity:1;transform:none}
+
+.sv-panel{
+  display:grid;grid-template-columns:1.02fr .98fr;
+  border:1px solid var(--line);background:var(--bg2);min-height:430px;
+}
+.sv-panel__media{border-right:1px solid var(--line);min-height:280px}
+.sv-panel__tag{
+  position:absolute;left:16px;bottom:16px;z-index:4;
+  font-size:.62rem;font-weight:800;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);background:rgba(15,15,17,.66);border:1px solid rgba(197,154,63,.45);
+  padding:6px 11px;backdrop-filter:blur(3px);
+}
+.sv-panel__body{padding:clamp(24px,3vw,38px);display:flex;flex-direction:column}
+.sv-panel__body h3{font-size:1.5rem;font-weight:800;letter-spacing:-.01em}
+.sv-panel__body>p{color:var(--dim);margin-top:12px;font-size:.96rem}
+.check-list{display:grid;gap:11px;margin-top:22px}
+.check-list li{display:flex;align-items:center;gap:11px;font-size:.9rem;font-weight:700;color:var(--silver)}
+.check-list .ic{width:16px;height:16px;color:var(--gold);stroke-width:2.6}
+.sv-panel__body .link-arrow{margin-top:auto;padding-top:26px}
+.sv-stage{transition:opacity .22s ease,transform .22s ease}
+.sv-stage.fade{opacity:0;transform:translateY(10px)}
+.sv-note{
+  display:flex;align-items:center;gap:11px;margin-top:20px;
+  color:var(--dim);font-size:.86rem;
+}
+.sv-note .ic{color:var(--gold)}
+
+/* ============================================================
+   FLOORING MATERIALS
+   ============================================================ */
+.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.mat{border:1px solid var(--line);background:var(--bg2);transition:border-color .3s,transform .3s var(--ease)}
+.mat:hover{border-color:rgba(197,154,63,.55);transform:translateY(-5px)}
+.mat .media{aspect-ratio:4/4.7}
+.mat .layer{transition:transform .7s var(--ease)}
+.mat:hover .layer{transform:scale(1.055)}
+.mat__body{padding:20px 20px 22px;border-top:1px solid var(--line)}
+.mat__body h3{font-size:1.08rem;font-weight:800;letter-spacing:.05em}
+.mat__body ul{display:grid;gap:6px;margin-top:13px}
+.mat__body li{display:flex;align-items:center;gap:9px;font-size:.82rem;color:var(--dim)}
+.mat__body li::before{content:"";width:4px;height:4px;background:var(--gold);transform:rotate(45deg);flex:none}
+.mats-foot{text-align:center;margin-top:34px}
+
+/* ============================================================
+   REMODELING + BEFORE / AFTER
+   ============================================================ */
+.rm-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,4vw,54px);align-items:start}
+.ba{
+  --pos:55%;position:relative;overflow:hidden;
+  border:1px solid var(--line);aspect-ratio:4/3.1;
+  touch-action:pan-y;cursor:ew-resize;user-select:none;
+}
+.ba:focus-within{outline:2px solid rgba(197,154,63,.6);outline-offset:4px}
+.ba__before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
+.ba__handle{
+  position:absolute;top:0;bottom:0;left:var(--pos);width:2px;z-index:6;
+  background:var(--gold);transform:translateX(-1px);pointer-events:none;
+}
+.ba__grip{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:47px;height:47px;border-radius:50%;
+  background:rgba(15,15,17,.82);border:1px solid var(--gold);
+  display:grid;place-items:center;color:var(--gold);backdrop-filter:blur(4px);
+}
+.ba__grip .ic{width:20px;height:20px}
+.ba__tag{
+  position:absolute;top:14px;z-index:4;
+  font-size:.62rem;font-weight:800;letter-spacing:.18em;
+  padding:6px 11px;background:rgba(15,15,17,.72);border:1px solid var(--line);
+  color:var(--silver);backdrop-filter:blur(3px);
+}
+.ba__tag--b{left:14px}
+.ba__tag--a{right:14px;color:var(--gold);border-color:rgba(197,154,63,.5)}
+.ba__range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:7;margin:0}
+.ba-hint{display:flex;align-items:center;gap:9px;margin-top:12px;font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim2)}
+.ba-hint .ic{width:15px;height:15px;color:var(--gold)}
+.rm-list li{display:grid;grid-template-columns:130px 1fr;gap:16px;border-top:1px solid var(--line);padding:17px 0}
+.rm-list li:last-child{border-bottom:1px solid var(--line)}
+.rm-list strong{font-size:.72rem;font-weight:800;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;padding-top:3px}
+.rm-list p{color:var(--dim);font-size:.92rem}
+.rm-grid .link-arrow{margin-top:26px}
+
+/* ============================================================
+   PROMO
+   ============================================================ */
+.promo .container{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,5vw,70px);align-items:center}
+.promo__save{font-size:.78rem;font-weight:800;letter-spacing:.26em;color:var(--silver);text-transform:uppercase}
+.promo__amount{
+  font-size:clamp(3.4rem,7.5vw,5.6rem);font-weight:800;letter-spacing:-.02em;
+  color:var(--gold);line-height:1;margin-top:10px;font-variant-numeric:tabular-nums;
+}
+.promo__on{display:block;font-size:.76rem;font-weight:800;letter-spacing:.22em;color:var(--silver);text-transform:uppercase;margin-top:14px}
+.promo__sub{color:var(--dim);margin-top:16px;max-width:440px;font-size:.95rem}
+.promo__fine{font-size:.74rem;color:var(--dim2);margin-top:20px}
+
+.goldframe{position:relative;border:1px solid rgba(197,154,63,.55)}
+.goldframe::before{content:"";position:absolute;inset:9px;border:1px solid rgba(197,154,63,.25);pointer-events:none}
+.promo__card{padding:clamp(28px,3.5vw,44px);background:var(--bg3);text-align:center}
+.promo__kicker{font-size:.66rem;font-weight:800;letter-spacing:.26em;color:var(--gold);text-transform:uppercase}
+.promo__card h4{font-size:clamp(1.25rem,2.2vw,1.6rem);font-weight:800;letter-spacing:.02em;line-height:1.25;margin-top:14px;text-transform:uppercase}
+.promo__card blockquote{font-style:italic;color:var(--silver);margin-top:14px;font-size:.98rem}
+.promo__hr{height:1px;background:var(--line);margin:24px 0}
+.promo__card .btn{width:100%}
+.promo__tel{display:inline-flex;align-items:center;gap:9px;margin-top:16px;color:var(--dim);font-weight:700;font-size:.92rem}
+.promo__tel:hover{color:var(--gold)}
+.promo__tel .ic{color:var(--gold);width:16px;height:16px}
+
+/* ============================================================
+   WHY W.A.R.
+   ============================================================ */
+.why-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,5vw,80px);align-items:start}
+.why-intro{position:sticky;top:110px}
+.why-intro p{color:var(--dim);margin-top:16px}
+.why-contact{margin-top:30px;display:grid;gap:10px}
+.why-phone{display:flex;align-items:center;gap:13px;font-size:1.55rem;font-weight:800;letter-spacing:.01em}
+.why-phone .ic{color:var(--gold);width:22px;height:22px}
+.why-phone:hover{color:var(--gold)}
+.why-mail{display:flex;align-items:center;gap:13px;color:var(--dim);font-weight:600}
+.why-mail .ic{color:var(--gold);width:17px;height:17px}
+.why-mail:hover{color:var(--gold)}
+.why-list li{display:grid;grid-template-columns:58px 1fr;gap:18px;padding:24px 0;border-top:1px solid var(--line)}
+.why-list li:last-child{border-bottom:1px solid var(--line)}
+.why-list span{font-size:.8rem;font-weight:800;color:var(--gold);letter-spacing:.08em;padding-top:3px}
+.why-list h4{font-size:1.02rem;font-weight:800;letter-spacing:.03em;text-transform:uppercase}
+.why-list p{color:var(--dim);font-size:.92rem;margin-top:7px}
+
+/* ============================================================
+   GALLERY
+   ============================================================ */
+.gfilters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+.gfilters button{
+  padding:10px 18px;border:1px solid var(--line);border-radius:2px;
+  font-size:.7rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);transition:.25s;
+}
+.gfilters button:hover{color:var(--white);border-color:#5a5a64}
+.gfilters button.active{color:var(--gold);border-color:var(--gold)}
+.g-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:195px;gap:18px}
+.g-item{position:relative;overflow:hidden;border:1px solid var(--line)}
+.g-item.hide{display:none}
+.g-item.pop{animation:pop .55s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(16px) scale(.97)}}
+.g-item .layer{transition:transform .7s var(--ease)}
+.g-item:hover .layer{transform:scale(1.06)}
+.g-item::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease);z-index:5}
+.g-item:hover::after{transform:scaleX(1)}
+.g-cap{
+  position:absolute;left:0;right:0;bottom:0;z-index:4;padding:38px 18px 15px;
+  background:linear-gradient(180deg,transparent,rgba(15,15,17,.88) 78%);
+  transform:translateY(6px);transition:transform .4s var(--ease);
+}
+.g-item:hover .g-cap{transform:none}
+.g-cap strong{display:block;font-size:.95rem;font-weight:800;letter-spacing:.02em}
+.g-cap span{display:block;font-size:.66rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-top:5px}
+.g-lg{grid-column:span 2;grid-row:span 2}
+.g-wide{grid-column:span 2}
+
+/* ============================================================
+   PROCESS
+   ============================================================ */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(22px,3vw,40px)}
+.step{border-top:1px solid var(--line);padding-top:22px;position:relative}
+.step::before{content:"";position:absolute;top:-1px;left:0;width:36px;height:1px;background:var(--gold)}
+.step__num{
+  font-size:3.6rem;font-weight:800;line-height:1;
+  color:transparent;-webkit-text-stroke:1px rgba(224,224,224,.30);
+  transition:color .4s;
+}
+.step:hover .step__num{color:rgba(197,154,63,.9);-webkit-text-stroke:1px rgba(197,154,63,.9)}
+.step h4{font-size:.86rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-top:14px}
+.step p{color:var(--dim);font-size:.9rem;margin-top:9px}
+
+/* ============================================================
+   FINAL CTA
+   ============================================================ */
+.cta{
+  position:relative;overflow:hidden;text-align:center;
+  background:var(--bg3);
+  border-top:1px solid rgba(197,154,63,.22);
+  border-bottom:1px solid rgba(197,154,63,.22);
+}
+.cta__crown-bg{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-54%);
+  width:min(540px,88vw);opacity:.05;z-index:0;pointer-events:none;
+}
+.cta .container{position:relative;z-index:1}
+.cta__crown{width:44px;height:44px;margin-inline:auto}
+.cta h2{font-size:clamp(2rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.015em;line-height:1.08;text-transform:uppercase;margin-top:22px}
+.cta p{color:var(--dim);max-width:520px;margin:18px auto 0}
+.cta__actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:36px}
+.cta__mail{display:inline-flex;align-items:center;gap:10px;margin-top:26px;color:var(--dim);font-weight:700;font-size:.92rem}
+.cta__mail:hover{color:var(--gold)}
+.cta__mail .ic{color:var(--gold);width:16px;height:16px}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer{background:#0B0B0D;border-top:1px solid var(--line);padding-top:clamp(54px,7vw,80px)}
+.foot-grid{display:grid;grid-template-columns:1.4fr .8fr .9fr .9fr;gap:clamp(30px,4vw,56px)}
+.foot-brand .logo__crown{width:36px;height:36px}
+.foot-brand .logo__type b{font-size:1.5rem}
+.foot-brand .logo__type i{font-size:.72rem;letter-spacing:.52em}
+.foot-tag{margin-top:16px;font-size:.74rem;font-weight:800;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
+.foot-blurb{color:var(--dim2);font-size:.88rem;margin-top:14px;max-width:300px}
+.footer h5{font-size:.68rem;font-weight:800;letter-spacing:.22em;color:var(--silver);text-transform:uppercase;margin-bottom:18px}
+.foot-links{display:grid;gap:10px}
+.foot-links a{color:var(--dim);font-size:.88rem;transition:color .25s}
+.foot-links a:hover{color:var(--gold)}
+.foot-contact{display:grid;gap:12px}
+.foot-contact a{display:flex;align-items:center;gap:11px;color:var(--dim);font-weight:700;font-size:.92rem}
+.foot-contact a:hover{color:var(--gold)}
+.foot-contact .ic{color:var(--gold);width:16px;height:16px}
+.foot-contact small{color:var(--dim2);font-size:.8rem}
+.foot-cta .btn{width:100%;margin-top:4px}
+.foot-cta span{display:block;margin-top:12px;font-size:.74rem;color:var(--dim2)}
+.foot-bar{
+  margin-top:clamp(44px,6vw,64px);border-top:1px solid var(--line);
+  padding-block:22px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;
+  font-size:.74rem;color:var(--dim2);
+}
+.foot-bar b{color:var(--dim);letter-spacing:.14em;font-weight:800}
+
+/* ============================================================
+   REVEAL ANIMATIONS
+   ============================================================ */
+[data-reveal]{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:var(--d,0s)}
+[data-reveal="left"]{transform:translateX(-28px)}
+[data-reveal="right"]{transform:translateX(28px)}
+[data-reveal].in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  [data-reveal]{opacity:1!important;transform:none!important}
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1020px){
+  .g-grid{grid-template-columns:repeat(3,1fr);grid-auto-rows:185px}
+  .mat-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:920px){
+  .nav__links,.nav .btn{display:none}
+  .nav__burger{display:flex}
+  .nav__inner{height:66px}
+  .hero{padding-top:96px}
+  .hero .container{grid-template-columns:1fr}
+  .hero__media{aspect-ratio:4/3}
+  .hero__card{left:14px;bottom:14px;max-width:280px}
+  .sv{grid-template-columns:1fr;gap:22px}
+  .sv-tabs{display:flex;overflow-x:auto;gap:8px;padding-bottom:10px;scrollbar-width:thin}
+  .sv-group{display:none}
+  .stab{border-left:0;border:1px solid var(--line);white-space:nowrap;padding:11px 16px;border-radius:2px}
+  .stab.is-active{border-color:var(--gold)}
+  .stab__num,.stab__arr{display:none}
+  .rm-grid{grid-template-columns:1fr}
+  .promo .container{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
+  .why-intro{position:static}
+  .steps{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:680px){
+  .g-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px;gap:12px}
+  .g-lg{grid-row:span 1}
+  .g-cap strong{font-size:.8rem}
+  .g-cap span{font-size:.58rem}
+  .steps{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .sv-panel{grid-template-columns:1fr;min-height:0}
+  .sv-panel__media{aspect-ratio:4/2.8;min-height:0;border-right:0;border-bottom:1px solid var(--line)}
+  .hero__actions .btn{flex:1;min-width:200px}
+  .ba{aspect-ratio:4/3.4}
+}
+@media (max-width:480px){
+  .mat-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .trust li{padding-inline:10px;gap:10px;font-size:.62rem}
+  .hero__card{position:static;margin:-46px 14px 0;max-width:none}
+  .hero__frame{margin-bottom:0}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= NAVIGATION ================= -->
+<header class="nav" id="nav">
+  <div class="container nav__inner">
+    <a class="logo" href="#home" aria-label="W.A.R. Flooring — back to top">
+      <svg class="logo__crown" viewBox="0 0 24 24" aria-hidden="true"><path fill="#C59A3F" d="M2.5 16.8 5.5 7.2l4.2 4.6L12 4.8l2.3 7 4.2-4.6 3 9.6z"/><rect x="2.5" y="18.4" width="19" height="2.2" rx="1.1" fill="#C59A3F"/></svg>
+      <span class="logo__type"><b>W.A.R.</b><i>FLOORING</i></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#flooring">Flooring</a>
+      <a href="#remodeling">Remodeling</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn--gold" href="#contact">Get Free Estimate</a>
+    <button class="nav__burger" id="burger" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- mobile menu -->
+<div class="mnav" id="mnav">
+  <nav aria-label="Mobile">
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#flooring">Flooring</a>
+    <a href="#remodeling">Remodeling</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="mnav__cta">
+    <a class="btn btn--gold btn--lg" href="#contact">Get a Free Estimate</a>
+    <a class="mnav__row" href="tel:+19542427224"><svg class="ic" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>954-242-7224</a>
+    <a class="mnav__row" href="mailto:ctcgaven@gmail.com"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>ctcgaven@gmail.com</a>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="container">
+    <div data-reveal>
+      <p class="eyebrow">Flooring &amp; Remodeling · Residential &amp; Commercial</p>
+      <h1 class="hero__title">
+        We go to <span class="war">war<svg class="war__stroke" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path d="M3 9 C30 3 60 11 117 5" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" pathLength="1"/></svg></span><br>
+        <span class="l2">with the floors</span><span class="dot">.</span>
+      </h1>
+      <p class="hero__sub">From a single room to a full remodel, we install beautiful floors and transform the spaces you live in — and we handle the mess along the way. Fair pricing, real craftsmanship, zero stress.</p>
+      <div class="hero__actions">
+        <a class="btn btn--gold btn--lg" href="#contact">Get a Free Estimate</a>
+        <a class="btn btn--ghost btn--lg" href="tel:+19542427224">
+          <svg class="ic" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call 954-242-7224
+        </a>
+      </div>
+      <ul class="hero__micro">
+        <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Free estimates</li>
+        <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Save up to $1,250 on select projects</li>
+        <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Residential &amp; commercial</li>
+      </ul>
+    </div>
+
+    <div class="hero__frame" data-reveal="right" style="--d:.15s">
+      <div class="media fx-noise hero__media">
+        <!-- SWAP: replace the layer below with <img class="layer" src="hero-interior.jpg" alt="..."> -->
+        <div class="layer tex-plank tex-plank--oak"></div>
+        <span class="sheen" aria-hidden="true"></span>
+        <span class="tag">Residential &amp; Commercial</span>
+        <span class="cap">Oak LVP · Coral Springs, FL</span>
+      </div>
+      <div class="hero__card">
+        <span class="hero__card-kicker">Included Free</span>
+        <strong>Carpet Rip &amp; Furniture Moving</strong>
+        <em>“We handle the mess. You enjoy the results.”</em>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<section class="trust" aria-label="Why customers choose us">
+  <div class="container">
+    <ul>
+      <li>Quality Workmanship</li>
+      <li>On Time &amp; Reliable</li>
+      <li>Fair Pricing</li>
+      <li>Residential &amp; Commercial</li>
+      <li>Free Estimates</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="section" id="services">
+  <div class="container">
+    <div class="shead" data-reveal>
+      <p class="eyebrow">What we do</p>
+      <h2>One crew for your floors, kitchen &amp; bath.</h2>
+      <p>Pick a service to see how we work, what you get, and why it lasts.</p>
+    </div>
+
+    <div class="sv">
+      <div data-reveal>
+        <p class="sv-group">Flooring</p>
+        <button class="stab is-active" data-svc="lvp" type="button"><span class="stab__num">01</span><span class="stab__name">LVP Flooring</span><svg class="stab__arr ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="stab" data-svc="lvt" type="button"><span class="stab__num">02</span><span class="stab__name">LVT Flooring</span><svg class="stab__arr ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="stab" data-svc="lam" type="button"><span class="stab__num">03</span><span class="stab__name">Laminate Flooring</span><svg class="stab__arr ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="stab" data-svc="tile" type="button"><span class="stab__num">04</span><span class="stab__name">Tile</span><svg class="stab__arr ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="sv-group">Remodeling</p>
+        <button class="stab" data-svc="bath" type="button"><span class="stab__num">05</span><span class="stab__name">Bathroom Remodels</span><svg class="stab__arr ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="stab" data-svc="kit" type="button"><span class="stab__num">06</span><span class="stab__name">Kitchen Remodels</span><svg class="stab__arr ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+
+      <div data-reveal style="--d:.1s">
+        <div class="sv-stage" id="svStage">
+          <article class="sv-panel">
+            <div class="media fx-noise sv-panel__media">
+              <div class="room layer" id="svRoom" style="--wall:#E9E1D2">
+                <i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-plank tex-plank--oak" id="svFloor"></i>
+              </div>
+              <span class="sv-panel__tag" id="svTag">Luxury Vinyl Plank</span>
+            </div>
+            <div class="sv-panel__body">
+              <h3 id="svTitle">LVP Flooring</h3>
+              <p id="svDesc">Rigid planks built for real life — tough against scratches, spills, and foot traffic, with the warm look of hardwood.</p>
+              <ul class="check-list" id="svPoints">
+                <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span>Durable &amp; scratch resistant</span></li>
+                <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span>Water resistant</span></li>
+                <li><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg><span>Stylish wood looks</span></li>
+              </ul>
+              <a class="link-arrow" href="#contact">Get a free estimate<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            </div>
+          </article>
+        </div>
+        <p class="sv-note"><svg class="ic" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Every flooring project includes free carpet rip &amp; furniture moving — we handle the mess.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FLOORING MATERIALS ================= -->
+<section class="section section--alt" id="flooring">
+  <div class="container">
+    <div class="shead" data-reveal>
+      <p class="eyebrow">Flooring materials</p>
+      <h2>Find the floor that fits your home.</h2>
+      <p>Four great options — and we’ll bring samples to your free estimate so you can see them in your own light.</p>
+    </div>
+
+    <div class="mat-grid">
+      <article class="mat" data-reveal>
+        <div class="media fx-noise">
+          <!-- SWAP: replace layer with real material photo -->
+          <div class="layer tex-plank tex-plank--oak"></div>
+          <span class="tag">01</span>
+        </div>
+        <div class="mat__body">
+          <h3>LVP</h3>
+          <ul><li>Durable</li><li>Water resistant</li><li>Stylish</li></ul>
+        </div>
+      </article>
+      <article class="mat" data-reveal style="--d:.08s">
+        <div class="media fx-noise">
+          <div class="layer tex-chev"></div>
+          <span class="tag">02</span>
+        </div>
+        <div class="mat__body">
+          <h3>LVT</h3>
+          <ul><li>Realistic look</li><li>Waterproof</li><li>Versatile</li></ul>
+        </div>
+      </article>
+      <article class="mat" data-reveal style="--d:.16s">
+        <div class="media fx-noise">
+          <div class="layer tex-plank tex-plank--ash"></div>
+          <span class="tag">03</span>
+        </div>
+        <div class="mat__body">
+          <h3>Laminate</h3>
+          <ul><li>Affordable</li><li>Durable</li><li>Beautiful</li></ul>
+        </div>
+      </article>
+      <article class="mat" data-reveal style="--d:.24s">
+        <div class="media fx-noise">
+          <div class="layer tex-tile tex-tile--light"></div>
+          <span class="tag">04</span>
+        </div>
+        <div class="mat__body">
+          <h3>Tile</h3>
+          <ul><li>Classic</li><li>Clean</li><li>Timeless — any space</li></ul>
+        </div>
+      </article>
+    </div>
+
+    <p class="mats-foot" data-reveal><a class="link-arrow" href="#contact">Not sure which fits? We’ll bring samples to your estimate<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+  </div>
+</section>
+
+<!-- ================= REMODELING / BEFORE & AFTER ================= -->
+<section class="section" id="remodeling">
+  <div class="container">
+    <div class="shead" data-reveal>
+      <p class="eyebrow">Remodeling</p>
+      <h2>Make your home the upgrade it deserves.</h2>
+      <p>Kitchens, bathrooms, floors, and full rooms. Drag the slider — this is the kind of change we’re talking about.</p>
+    </div>
+
+    <div class="rm-grid">
+      <div data-reveal>
+        <div class="ba" id="ba">
+          <!-- SWAP: replace both rooms with real before/after photos -->
+          <div class="layer room ba__after" style="--wall:#EDE7DB">
+            <i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-plank tex-plank--oak"></i>
+            <span class="ba__tag ba__tag--a">After</span>
+          </div>
+          <div class="layer room fx-noise--heavy ba__before" style="--wall:#CFC6B4">
+            <i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-carpet"></i>
+            <span class="ba__tag ba__tag--b">Before</span>
+          </div>
+          <div class="ba__handle" aria-hidden="true">
+            <span class="ba__grip"><svg class="ic" viewBox="0 0 24 24"><path d="m11 7-5 5 5 5M13 7l5 5-5 5"/></svg></span>
+          </div>
+          <input class="ba__range" id="baRange" type="range" min="0" max="100" value="55" aria-label="Compare before and after">
+        </div>
+        <p class="ba-hint"><svg class="ic" viewBox="0 0 24 24"><path d="m11 7-5 5 5 5M13 7l5 5-5 5"/></svg>Living room · carpet to oak LVP · drag to compare</p>
+      </div>
+
+      <div data-reveal style="--d:.12s">
+        <ul class="rm-list">
+          <li><strong>Kitchens</strong><p>New floors, backsplash, tile, and finish work that changes how the whole home feels.</p></li>
+          <li><strong>Bathrooms</strong><p>Floors, tile showers, and vanities — partial refresh or a full remodel, done right.</p></li>
+          <li><strong>Floors &amp; full rooms</strong><p>One room or the whole place. We rip out the old, handle the mess, and build what you’ve been picturing.</p></li>
+        </ul>
+        <a class="link-arrow" href="#contact">Start your remodel<svg class="ic" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROMO ================= -->
+<section class="section section--alt promo" id="offer">
+  <div class="container">
+    <div data-reveal>
+      <p class="eyebrow">Current offer</p>
+      <p class="promo__save" style="margin-top:22px">Save up to</p>
+      <p class="promo__amount"><span data-count="1250">$0</span></p>
+      <span class="promo__on">On select flooring &amp; remodeling projects</span>
+      <p class="promo__sub">Real savings on real projects — flooring, bathrooms, and kitchens. Mention this offer when you call for your free estimate.</p>
+      <p class="promo__fine">Savings vary by project. Ask for details — no fine print games, just honest numbers.</p>
+    </div>
+
+    <div class="goldframe promo__card" data-reveal style="--d:.12s">
+      <p class="promo__kicker">Included with your project</p>
+      <h4>Free Carpet Rip &amp;<br>Furniture Moving</h4>
+      <blockquote>“We handle the mess.<br>You enjoy the results.”</blockquote>
+      <div class="promo__hr" aria-hidden="true"></div>
+      <a class="btn btn--gold btn--lg" href="#contact">Get Your Free Estimate</a>
+      <a class="promo__tel" href="tel:+19542427224"><svg class="ic" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>or call 954-242-7224</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY W.A.R. ================= -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-intro" data-reveal>
+        <p class="eyebrow">Why W.A.R. Flooring</p>
+        <div class="shead" style="margin-bottom:0">
+          <h2>Why homeowners &amp; businesses call us.</h2>
+          <p>No corporate runaround. Just a local crew that shows up, does the work right, and stands behind it.</p>
+        </div>
+        <div class="why-contact">
+          <a class="why-phone" href="tel:+19542427224"><svg class="ic" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>954-242-7224</a>
+          <a class="why-mail" href="mailto:ctcgaven@gmail.com"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>ctcgaven@gmail.com</a>
+        </div>
+      </div>
+
+      <ol class="why-list" data-reveal style="--d:.1s">
+        <li><span>01</span><div><h4>Quality Workmanship</h4><p>Every seam, transition, and cut is done the way we’d want it in our own homes. If it’s not right, we fix it.</p></div></li>
+        <li><span>02</span><div><h4>On Time &amp; Reliable</h4><p>We show up when we say we will, and we keep you updated every step of the way.</p></div></li>
+        <li><span>03</span><div><h4>Fair, Upfront Pricing</h4><p>Free estimates with clear numbers. The price we quote is the price you pay.</p></div></li>
+        <li><span>04</span><div><h4>Residential &amp; Commercial</h4><p>Single rooms, whole homes, offices, rentals, and retail spaces — no job is too small to do right.</p></div></li>
+        <li><span>05</span><div><h4>We Handle the Mess</h4><p>Free carpet rip and furniture moving on flooring projects. We leave your space cleaner than we found it.</p></div></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section class="section section--alt" id="projects">
+  <div class="container">
+    <div class="shead" data-reveal>
+      <p class="eyebrow">Recent work</p>
+      <h2>Real projects. Real results.</h2>
+      <p>A look at floors and remodels we’ve finished around South Florida.</p>
+    </div>
+
+    <div class="gfilters" data-reveal role="group" aria-label="Filter projects">
+      <button class="active" data-filter="all" type="button">All</button>
+      <button data-filter="flooring" type="button">Flooring</button>
+      <button data-filter="kitchens" type="button">Kitchens</button>
+      <button data-filter="bathrooms" type="button">Bathrooms</button>
+    </div>
+
+    <div class="g-grid">
+      <!-- SWAP: each .layer .room can be replaced with a real project <img> -->
+      <figure class="g-item g-lg" data-cat="flooring" data-reveal>
+        <div class="media fx-noise"><div class="layer room" style="--wall:#E7DFD2"><i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-plank tex-plank--oak"></i></div></div>
+        <figcaption class="g-cap"><strong>Oak LVP — Living Room</strong><span>Flooring · Coral Springs, FL</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="kitchens" data-reveal style="--d:.06s">
+        <div class="media fx-noise"><div class="layer room" style="--wall:#2F4038"><i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-plank tex-plank--honey"></i></div></div>
+        <figcaption class="g-cap"><strong>Kitchen Refresh</strong><span>Kitchens · Weston, FL</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="bathrooms" data-reveal style="--d:.12s">
+        <div class="media fx-noise"><div class="layer room" style="--wall:#DDE3E4"><i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-checker"></i></div></div>
+        <figcaption class="g-cap"><strong>Master Bath Remodel</strong><span>Bathrooms · Plantation, FL</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="flooring" data-reveal style="--d:.18s">
+        <div class="media fx-noise"><div class="layer room" style="--wall:#B9AD98"><i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-plank tex-plank--ash"></i></div></div>
+        <figcaption class="g-cap"><strong>Wide-Plank Laminate</strong><span>Flooring · Davie, FL</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="flooring" data-reveal style="--d:.24s">
+        <div class="media fx-noise"><div class="layer room" style="--wall:#3A3F4A"><i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-chev"></i></div></div>
+        <figcaption class="g-cap"><strong>Chevron LVT — Den</strong><span>Flooring · Pembroke Pines, FL</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="bathrooms" data-reveal style="--d:.3s">
+        <div class="media fx-noise"><div class="layer room" style="--wall:#E9E2D6"><i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-tile tex-tile--gray"></i></div></div>
+        <figcaption class="g-cap"><strong>Guest Bath — New Tile</strong><span>Bathrooms · Sunrise, FL</span></figcaption>
+      </figure>
+      <figure class="g-item" data-cat="kitchens" data-reveal style="--d:.36s">
+        <div class="media fx-noise"><div class="layer room" style="--wall:#4A4036"><i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-plank tex-plank--walnut"></i></div></div>
+        <figcaption class="g-cap"><strong>Kitchen Floors &amp; Backsplash</strong><span>Kitchens · Miramar, FL</span></figcaption>
+      </figure>
+      <figure class="g-item g-wide" data-cat="flooring" data-reveal style="--d:.42s">
+        <div class="media fx-noise"><div class="layer room" style="--wall:#23262B"><i class="room__wall"></i><i class="room__base"></i><i class="room__floor tex-plank tex-plank--gray"></i></div></div>
+        <figcaption class="g-cap"><strong>Commercial Lobby — LVP</strong><span>Flooring · Fort Lauderdale, FL</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="section" id="process">
+  <div class="container">
+    <div class="shead" data-reveal>
+      <p class="eyebrow">How it works</p>
+      <h2>From first call to finished floor.</h2>
+    </div>
+    <ol class="steps">
+      <li class="step" data-reveal>
+        <p class="step__num">01</p>
+        <h4>Tell Us About Your Project</h4>
+        <p>Call, text, or message us. We’ll ask a few quick questions and set up a time to look at the space.</p>
+      </li>
+      <li class="step" data-reveal style="--d:.08s">
+        <p class="step__num">02</p>
+        <h4>Get Your Free Estimate</h4>
+        <p>Clear numbers, fair pricing, no pressure. You’ll know exactly where you stand.</p>
+      </li>
+      <li class="step" data-reveal style="--d:.16s">
+        <p class="step__num">03</p>
+        <h4>Plan Your Transformation</h4>
+        <p>We help you pick materials, schedule around your life, and handle the mess — carpet rip and furniture moving included.</p>
+      </li>
+      <li class="step" data-reveal style="--d:.24s">
+        <p class="step__num">04</p>
+        <h4>Enjoy the Results</h4>
+        <p>New floors, a fresh space, and a clean job site. That’s the W.A.R. way.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section class="section cta" id="contact">
+  <svg class="cta__crown-bg" viewBox="0 0 24 24" aria-hidden="true"><path fill="#C59A3F" d="M2.5 16.8 5.5 7.2l4.2 4.6L12 4.8l2.3 7 4.2-4.6 3 9.6z"/><rect x="2.5" y="18.4" width="19" height="2.2" rx="1.1" fill="#C59A3F"/></svg>
+  <div class="container" data-reveal>
+    <svg class="cta__crown" viewBox="0 0 24 24" aria-hidden="true"><path fill="#C59A3F" d="M2.5 16.8 5.5 7.2l4.2 4.6L12 4.8l2.3 7 4.2-4.6 3 9.6z"/><rect x="2.5" y="18.4" width="19" height="2.2" rx="1.1" fill="#C59A3F"/></svg>
+    <h2>Ready for a fresh new space?</h2>
+    <p>Tell us about your project — floors, a bathroom, a kitchen, or the whole place. Free estimate, fair pricing, zero pressure.</p>
+    <div class="cta__actions">
+      <a class="btn btn--gold btn--lg" href="mailto:ctcgaven@gmail.com?subject=Free%20Estimate%20Request%20—%20W.A.R.%20Flooring">Get a Free Estimate</a>
+      <a class="btn btn--ghost btn--lg" href="tel:+19542427224">
+        <svg class="ic" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        954-242-7224
+      </a>
+    </div>
+    <a class="cta__mail" href="mailto:ctcgaven@gmail.com"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>ctcgaven@gmail.com</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a class="logo" href="#home" aria-label="W.A.R. Flooring — back to top">
+          <svg class="logo__crown" viewBox="0 0 24 24" aria-hidden="true"><path fill="#C59A3F" d="M2.5 16.8 5.5 7.2l4.2 4.6L12 4.8l2.3 7 4.2-4.6 3 9.6z"/><rect x="2.5" y="18.4" width="19" height="2.2" rx="1.1" fill="#C59A3F"/></svg>
+          <span class="logo__type"><b>W.A.R.</b><i>FLOORING</i></span>
+        </a>
+        <p class="foot-tag">We go to war with the floors.</p>
+        <p class="foot-blurb">Residential &amp; commercial flooring and remodeling. Quality work, honest pricing, and a finished space you’re proud of.</p>
+      </div>
+      <nav aria-label="Footer services">
+        <h5>Services</h5>
+        <div class="foot-links">
+          <a href="#services">LVP Flooring</a>
+          <a href="#services">LVT Flooring</a>
+          <a href="#services">Laminate Flooring</a>
+          <a href="#services">Tile</a>
+          <a href="#services">Flooring Installation</a>
+          <a href="#services">Bathroom Remodels</a>
+          <a href="#services">Kitchen Remodels</a>
+        </div>
+      </nav>
+      <div>
+        <h5>Contact</h5>
+        <div class="foot-contact">
+          <a href="tel:+19542427224"><svg class="ic" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>954-242-7224</a>
+          <a href="mailto:ctcgaven@gmail.com"><svg class="ic" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>ctcgaven@gmail.com</a>
+          <small>Free estimates · South Florida</small>
+        </div>
+      </div>
+      <div class="foot-cta">
+        <h5>Ready to start?</h5>
+        <a class="btn btn--gold" href="#contact">Get a Free Estimate</a>
+        <span>Free · No obligation</span>
+      </div>
+    </div>
+    <!-- Add your studio credit here, e.g. "Site design by [Your Name]" -->
+    <div class="foot-bar">
+      <span>© <span id="yr">2025</span> W.A.R. Flooring. All rights reserved.</span>
+      <b>WE GO TO WAR WITH THE FLOORS.</b>
+    </div>
+  </div>
+</footer>
+
+<script>
+const $  = (s, c = document) => c.querySelector(s);
+const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+/* ---------- sticky nav ---------- */
+const nav = $('#nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 30);
+onScroll();
+addEventListener('scroll', onScroll, { passive: true });
+
+/* ---------- mobile menu ---------- */
+const burger = $('#burger');
+const closeMenu = () => { document.body.classList.remove('menu-open'); burger.setAttribute('aria-expanded', 'false'); };
+burger.addEventListener('click', () => {
+  const open = document.body.classList.toggle('menu-open');
+  burger.setAttribute('aria-expanded', open);
+});
+ $$('#mnav a').forEach(a => a.addEventListener('click', closeMenu));
+addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+/* ---------- scroll reveal ---------- */
+const ro = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+}, { threshold: .12, rootMargin: '0px 0px -36px 0px' });
+ $$('[data-reveal]').forEach(el => ro.observe(el));
+
+/* ---------- services ---------- */
+const SERVICES = [
+  { id:'lvp',  name:'LVP Flooring',       tag:'Luxury Vinyl Plank',          floor:'tex-plank tex-plank--oak',    wall:'#E9E1D2',
+    desc:'Rigid planks built for real life — tough against scratches, spills, and foot traffic, with the warm look of hardwood.',
+    points:['Durable & scratch resistant','Water resistant','Stylish wood looks'] },
+  { id:'lvt',  name:'LVT Flooring',       tag:'Luxury Vinyl Tile',           floor:'tex-chev',                    wall:'#DDD6C8',
+    desc:'Tile-look vinyl with realistic stone and wood detail. Fully waterproof and comfortable underfoot.',
+    points:['Realistic look','Waterproof','Versatile'] },
+  { id:'lam',  name:'Laminate Flooring',  tag:'Hardwood Look, Better Price', floor:'tex-plank tex-plank--ash',    wall:'#E5DECF',
+    desc:'The hardwood look at a friendlier price. Today’s laminate is tough, clean, and installs fast.',
+    points:['Affordable','Durable','Beautiful'] },
+  { id:'tile', name:'Tile',               tag:'Floors, Walls & Showers',     floor:'tex-tile tex-tile--light',    wall:'#DDE0DC',
+    desc:'Classic tile work that stays crisp for decades — perfect for kitchens, baths, and entries.',
+    points:['Classic & timeless','Easy to keep clean','Any space, any style'] },
+  { id:'bath', name:'Bathroom Remodels',  tag:'Floors to Full Remodels',    floor:'tex-checker',                 wall:'#E9E4DA',
+    desc:'From a new floor to a full remodel — vanities, tile showers, and finish work done right, start to finish.',
+    points:['Tile showers','Vanities & fixtures','Partial or full remodels'] },
+  { id:'kit',  name:'Kitchen Remodels',   tag:'Floors, Backsplash & More',   floor:'tex-plank tex-plank--honey',  wall:'#39423B',
+    desc:'Kitchen updates that change how your whole home feels — new floors, fresh tile, and crisp finish work.',
+    points:['New kitchen flooring','Backsplash & tile','Full-room refresh'] }
+];
+const svStage = $('#svStage'), svRoom = $('#svRoom'), svFloor = $('#svFloor'),
+      svTitle = $('#svTitle'), svTag = $('#svTag'), svDesc = $('#svDesc'), svPoints = $('#svPoints');
+
+function renderSvc(id){
+  const s = SERVICES.find(x => x.id === id);
+  if (!s) return;
+  svRoom.style.setProperty('--wall', s.wall);
+  svFloor.className = 'room__floor ' + s.floor;
+  svTitle.textContent = s.name;
+  svTag.textContent = s.tag;
+  svDesc.textContent = s.desc;
+  svPoints.innerHTML = s.points.map(p =>
+    `<li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>${p}</span></li>`).join('');
+}
+ $$('.stab').forEach(btn => btn.addEventListener('click', () => {
+  if (btn.classList.contains('is-active')) return;
+  $$('.stab').forEach(b => b.classList.toggle('is-active', b === btn));
+  svStage.classList.add('fade');
+  setTimeout(() => { renderSvc(btn.dataset.svc); svStage.classList.remove('fade'); }, 220);
+}));
+
+/* ---------- count-up ($1,250) ---------- */
+const cnt = $('[data-count]');
+if (cnt){
+  const target = +cnt.dataset.count;
+  const io = new IntersectionObserver(([en]) => {
+    if (!en.isIntersecting) return;
+    io.disconnect();
+    const t0 = performance.now(), dur = 1400;
+    const tick = t => {
+      const k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 3);
+      cnt.textContent = '$' + Math.round(target * e).toLocaleString('en-US');
+      if (k < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, { threshold: .5 });
+  io.observe(cnt);
+}
+
+/* ---------- before / after slider ---------- */
+const ba = $('#ba');
+if (ba){
+  const range = $('#baRange');
+  const set = p => {
+    p = Math.max(4, Math.min(96, p));
+    ba.style.setProperty('--pos', p + '%');
+    if (range) range.value = p;
+  };
+  const fromEvent = e => {
+    const r = ba.getBoundingClientRect();
+    set((e.clientX - r.left) / r.width * 100);
+  };
+  let drag = false;
+  ba.addEventListener('pointerdown', e => { drag = true; ba.setPointerCapture(e.pointerId); fromEvent(e); });
+  ba.addEventListener('pointermove', e => { if (drag) fromEvent(e); });
+  ['pointerup','pointercancel'].forEach(ev => ba.addEventListener(ev, () => drag = false));
+  if (range) range.addEventListener('input', () => set(+range.value));
+  set(55);
+  /* one-time nudge so people notice it's draggable */
+  const io = new IntersectionObserver(([en]) => {
+    if (!en.isIntersecting) return;
+    io.disconnect();
+    let t0 = null;
+    const nudge = t => {
+      if (!t0) t0 = t;
+      const k = Math.min(1, (t - t0) / 1100);
+      set(55 + Math.sin(k * Math.PI) * 16);
+      if (k < 1) requestAnimationFrame(nudge);
+    };
+    requestAnimationFrame(nudge);
+  }, { threshold: .45 });
+  io.observe(ba);
+}
+
+/* ---------- gallery filter ---------- */
+const fbtns = $$('.gfilters button'), gitems = $$('.g-item');
+fbtns.forEach(b => b.addEventListener('click', () => {
+  fbtns.forEach(x => x.classList.toggle('active', x === b));
+  const f = b.dataset.filter;
+  gitems.forEach(it => {
+    const show = f === 'all' || it.dataset.cat === f;
+    it.classList.toggle('hide', !show);
+    if (show){ it.classList.remove('pop'); void it.offsetWidth; it.classList.add('pop'); }
+  });
+}));
+
+/* ---------- year ---------- */
+ $('#yr').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
